@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ChatController;
 
 Route::get('/', function () {
     return redirect()->route('books.index');
@@ -13,3 +14,6 @@ Route::resource('books', BookController::class);
 Route::get('books/trashed/all', [BookController::class, 'trashed'])->name('books.trashed');
 Route::patch('books/{id}/restore', [BookController::class, 'restore'])->name('books.restore');
 Route::delete('books/{id}/force-delete', [BookController::class, 'forceDelete'])->name('books.forceDelete');
+
+// Gemini API route
+Route::post('/chat', [ChatController::class, 'send'])->name('chat.send');
